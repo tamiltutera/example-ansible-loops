@@ -1,0 +1,18 @@
+---
+# YAML documents begin with the document separator ---
+
+# the minus in YAML this indicates a list item. The playbook contains a list
+# of plays, with each play being a dictionary
+
+- hosts: all
+  tasks:
+  - name: Ansible loop with index example
+    debug:
+      msg: "echo loop index at {{ item[0] }} and value at {{item[1]}}"
+    with_indexed_items:
+      - "hello1"
+      - "hello2"
+      - "hello3"
+# three dots indicate the end of a YAML document
+...
+

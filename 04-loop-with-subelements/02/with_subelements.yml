@@ -1,0 +1,35 @@
+---
+# YAML documents begin with the document separator ---
+# The minus in YAML this indicates a list item. The Playbook contains a list
+# of plays, with each play being a dictionary
+
+- name: 'loop with_subelements example playbook'
+
+  # Target: where our play will run and options it will run with
+  hosts: webservers
+
+  # Task: the list of tasks that will be executed within the playbook
+  tasks:       
+     - name: Create user
+       user:
+         name: "{{ item.1 }}"         
+         comment: "{{ item.1 }} {{ item.0.surname }}"
+         state: present
+       with_subelements: 
+         - 
+           - surname: Raj
+             members:
+               - stephen
+               - alex    
+           - surname: Jalba
+             members:
+               - ana  
+           - surname: Angne
+             members:
+               - abhishek
+           - surname: Mahmood
+             members:
+               - sara
+         - members
+# Three dots indicate the end of a YAML document
+...
